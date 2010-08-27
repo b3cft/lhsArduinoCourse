@@ -18,22 +18,22 @@
  
 /** Define our delay times, in ms */
 const int flashDelay  = 250;
-const int shortDelay  = 2000;
-const int longDelay   = 5000; 
+const int shortDelay  = 3000;
+const int longDelay   = 6000; 
 const int pedWaitTime = 10000;
 
 /** Define our LED pins */
-const int roadRedPin       = 0;
-const int roadAmberPin     = 1;
-const int roadGreenPin     = 2;
-const int crossingRedPin   = 3;
-const int crossingGreenPin = 4;
+const int roadRedPin       = 2;
+const int roadAmberPin     = 3;
+const int roadGreenPin     = 4;
+const int crossingRedPin   = 5;
+const int crossingGreenPin = 6;
 
 /** Define Crossing Request button */
-const int crossingRequestPin = 5;
+const int crossingRequestPin = 7;
 
 /** Define the piezo pin */
-const int sounderPin = 6;
+const int sounderPin = 8;
 
 /** Define the pin for the motor driving transistor. Note a PWM output */
 const int spinnerPin   = 9;
@@ -42,7 +42,10 @@ const int spinnerPin   = 9;
 const int spinnerSpeed = 128;
 
 /** Define the Crossing beeping setting */
-const int crossingTone = 1915;
+const int crossingTone = 300;
+
+/** How long each individual beep lasts */
+const int crossingToneDuration = 150;
 
 /** This variable will store the last time the button was pressed for a crossing */
 unsigned long lastCrossing;
@@ -94,6 +97,7 @@ void loop() {
  * This function actually performs the light changes for the crossing
  */
 void doCrossing() {
+  unsigned long start;
   
   /** Change the yellow LED to on for the road */
   digitalWrite(roadAmberPin, HIGH);
@@ -104,7 +108,12 @@ void doCrossing() {
   digitalWrite(roadRedPin, HIGH);
   digitalWrite(crossingRedPin, LOW); // ped red off
   digitalWrite(crossingGreenPin, HIGH); // ped green on
-  delay(longDelay); 
+  
+  start = millis();
+  while((millis()-start) < longDelay) { 
+    beep(crossingTone, crossingToneDuration);
+    delay(crossingToneDuration);
+  } 
   
   /** Flash the pedestrian crossing and road amber and make our beeping and start the spinner */
   digitalWrite(roadRedPin, LOW);
@@ -112,10 +121,10 @@ void doCrossing() {
   for (int x=0; x<10; x++) {
     digitalWrite(roadAmberPin, HIGH);
     digitalWrite(crossingGreenPin, HIGH);
-    beep(crossingTone, flashDelay);
+    delay(flashDelay);
     digitalWrite(roadAmberPin, LOW);
     digitalWrite(crossingGreenPin, LOW);
-    beep(crossingTone, flashDelay);
+    delay(flashDelay);
   }
 
   /** Set the pedestrian crossing red light on and the road green light on and stop the spinner */
