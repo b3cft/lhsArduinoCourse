@@ -5,7 +5,7 @@
  * Follows this sequence.
  * Red -> Red & Amber -> Green -> Amber
  * Red and Green lights stay on for the LongDelay
- * Transisions (Ambers) stay on for the ShortDelay
+ * Transitions (Ambers) stay on for the ShortDelay
  *  
  * @author Bob <andy _._ brockhurst $$at$$ b3cft _._ com>
  */
