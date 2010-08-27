@@ -16,7 +16,7 @@ const int offDelay = 1000;
 /**
  * The Setup Function is only run once, when the Arduino is powered on or after it is reset.
  *
- * This initialised the state of the Ardunio, in this case all we want
+ * This initialises the state of the Arduino, in this case all we want
  * is to set our ledpin to be set to Output mode.
  */
 void setup() {
