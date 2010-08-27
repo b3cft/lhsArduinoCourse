@@ -18,19 +18,19 @@
  
 /** Define our delay times, in ms */
 const int flashDelay  = 250;
-const int shortDelay  = 2000;
-const int longDelay   = 5000; 
+const int shortDelay  = 3000;
+const int longDelay   = 6000; 
 const int pedWaitTime = 10000;
 
 /** Define our LED pins */
-const int roadRedPin       = 0;
-const int roadAmberPin    = 1;
-const int roadGreenPin     = 2;
-const int crossingRedPin   = 3;
-const int crossingGreenPin = 4;
+const int roadRedPin       = 2;
+const int roadAmberPin     = 3;
+const int roadGreenPin     = 4;
+const int crossingRedPin   = 5;
+const int crossingGreenPin = 6;
 
 /** Define Crossing Request button */
-const int crossingRequestPin = 5;
+const int crossingRequestPin = 7;
 
 /** This variable will store the last time the button was pressed for a crossing */
 unsigned long lastCrossing;

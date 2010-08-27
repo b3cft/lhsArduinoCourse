@@ -15,9 +15,9 @@ const int shortDelay = 2000;
 const int longDelay  = 5000; 
 
 /** Define which pins to use for the LEDs */
-const int redPin    = 0;
-const int yellowPin = 1;
-const int greenPin  = 2;
+const int redPin    = 2;
+const int yellowPin = 3;
+const int greenPin  = 4;
 
 /**
  * Set all of our LED pins to be outputs. 

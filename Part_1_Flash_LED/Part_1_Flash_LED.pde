@@ -5,7 +5,7 @@
  */
 
 /** Digital Output Pin for LED */
-const int ledPin = 0;
+const int ledPin = 2;
 
 /** Time for LED to be On in ms */
 const int onDelay = 1000;

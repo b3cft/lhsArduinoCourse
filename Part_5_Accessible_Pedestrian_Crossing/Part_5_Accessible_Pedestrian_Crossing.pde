@@ -104,10 +104,13 @@ void doCrossing() {
   digitalWrite(roadGreenPin, LOW);
   delay(shortDelay);
   
+  /** Change the road LED to red and pedestrian to green and start the spinner */
   digitalWrite(roadAmberPin, LOW);
   digitalWrite(roadRedPin, HIGH);
   digitalWrite(crossingRedPin, LOW); // ped red off
   digitalWrite(crossingGreenPin, HIGH); // ped green on
+  analogWrite(spinnerPin, spinnerSpeed);
+
   
   start = millis();
   while((millis()-start) < longDelay) { 
@@ -115,9 +118,9 @@ void doCrossing() {
     delay(crossingToneDuration);
   } 
   
-  /** Flash the pedestrian crossing and road amber and make our beeping and start the spinner */
+  /** Flash the pedestrian crossing and road amber and make our beeping and stop the spinner */
   digitalWrite(roadRedPin, LOW);
-  analogWrite(spinnerPin, spinnerSpeed);
+  analogWrite(spinnerPin, 0);
   for (int x=0; x<10; x++) {
     digitalWrite(roadAmberPin, HIGH);
     digitalWrite(crossingGreenPin, HIGH);
@@ -127,8 +130,7 @@ void doCrossing() {
     delay(flashDelay);
   }
 
-  /** Set the pedestrian crossing red light on and the road green light on and stop the spinner */
-  analogWrite(spinnerPin, 0);
+  /** Set the pedestrian crossing red light on and the road green light on */
   digitalWrite(crossingRedPin, HIGH);
   digitalWrite(roadGreenPin, HIGH);
 }
